@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Md. Ashiqur Rahman Hridoy | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:    #1a1f2e;
+      --panel:   #222839;
+      --teal:    #2dd4bf;
+      --teal-dk: #14b8a6;
+      --slate:   #94a3b8;
+      --light:   #e2e8f0;
+      --white:   #f8fafc;
+      --accent:  #f59e0b;
+      --sidebar: 260px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--light);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── SIDEBAR ── */
+    #sidebar {
+      width: var(--sidebar);
+      min-height: 100vh;
+      background: var(--panel);
+      position: fixed;
+      top: 0; left: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 2.5rem 1.75rem;
+      border-right: 1px solid rgba(255,255,255,.06);
+      z-index: 100;
+    }
+
+    .site-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.55rem;
+      line-height: 1.25;
+      color: var(--white);
+      margin-bottom: .4rem;
+    }
+
+    .site-sub {
+      font-size: .72rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 2.5rem;
+    }
+
+    nav { flex: 1; }
+
+    nav a {
+      display: block;
+      font-size: .85rem;
+      font-weight: 500;
+      color: var(--slate);
+      text-decoration: none;
+      padding: .55rem 0;
+      border-left: 2px solid transparent;
+      padding-left: .75rem;
+      transition: color .2s, border-color .2s;
+    }
+    nav a:hover, nav a.active {
+      color: var(--teal);
+      border-left-color: var(--teal);
+    }
+
+    .sidebar-socials {
+      display: flex;
+      gap: .75rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .sidebar-socials a {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.06);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--slate);
+      font-size: .8rem;
+      text-decoration: none;
+      transition: background .2s, color .2s;
+    }
+    .sidebar-socials a:hover { background: var(--teal); color: var(--dark); }
+
+    /* ── MAIN ── */
+    main {
+      margin-left: var(--sidebar);
+      flex: 1;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative;
+      height: 480px;
+      background: linear-gradient(160deg, #0f172a 0%, #1e293b 60%, #0f2027 100%);
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 3rem 3.5rem;
+    }
+
+    .hero-bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(45,212,191,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(45,212,191,.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: -80px; right: 60px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(45,212,191,.12) 0%, transparent 65%);
+    }
+
+    .hero-content { position: relative; z-index: 2; }
+
+    .hero-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .75rem;
+      color: var(--teal);
+      letter-spacing: .1em;
+      margin-bottom: .9rem;
+    }
+
+    .hero-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      line-height: 1.1;
+      color: var(--white);
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--teal);
+    }
+
+    .hero-tagline {
+      margin-top: .9rem;
+      font-size: .92rem;
+      color: var(--slate);
+      max-width: 500px;
+      line-height: 1.6;
+    }
+
+    .hero-badges {
+      display: flex;
+      gap: .6rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: .72rem;
+      font-family: 'JetBrains Mono', monospace;
+      padding: .3rem .8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(45,212,191,.3);
+      color: var(--teal);
+      background: rgba(45,212,191,.06);
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 4rem 3.5rem;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .7rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(45,212,191,.2);
+    }
+
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.9rem;
+      color: var(--white);
+      margin-bottom: 1.75rem;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .avatar-wrap {
+      width: 160px; height: 160px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid rgba(45,212,191,.3);
+      flex-shrink: 0;
+      background: var(--panel);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+
+    .avatar-wrap img { width: 100%; height: 100%; object-fit: cover; }
+
+    .about-text p {
+      font-size: .93rem;
+      line-height: 1.75;
+      color: var(--slate);
+      margin-bottom: 1rem;
+    }
+
+    .contact-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+      margin-top: 1.25rem;
+    }
+
+    .chip {
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+      font-size: .8rem;
+      color: var(--slate);
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 8px;
+      padding: .45rem .85rem;
+    }
+
+    .chip svg { flex-shrink: 0; }
+
+    /* ── TIMELINE (Experience / Education) ── */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+
+    .tl-item {
+      display: grid;
+      grid-template-columns: 120px 1px 1fr;
+      gap: 0 1.5rem;
+      padding-bottom: 2.5rem;
+    }
+
+    .tl-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .7rem;
+      color: var(--teal);
+      text-align: right;
+      padding-top: .15rem;
+      line-height: 1.5;
+    }
+
+    .tl-line {
+      position: relative;
+      background: rgba(45,212,191,.15);
+    }
+    .tl-line::before {
+      content: '';
+      position: absolute;
+      top: 4px; left: 50%;
+      transform: translateX(-50%);
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 0 3px rgba(45,212,191,.2);
+    }
+
+    .tl-body { padding-top: 0; }
+
+    .tl-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: .25rem;
+    }
+
+    .tl-org {
+      font-size: .82rem;
+      color: var(--teal-dk);
+      margin-bottom: .6rem;
+    }
+
+    .tl-desc {
+      font-size: .85rem;
+      color: var(--slate);
+      line-height: 1.65;
+    }
+
+    .tl-desc ul { padding-left: 1.2rem; }
+    .tl-desc li { margin-bottom: .35rem; }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-top: .8rem;
+    }
+
+    .tag {
+      font-size: .7rem;
+      padding: .2rem .65rem;
+      border-radius: 5px;
+      background: rgba(45,212,191,.08);
+      color: var(--teal);
+      border: 1px solid rgba(45,212,191,.2);
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .skill-card {
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: border-color .2s;
+    }
+    .skill-card:hover { border-color: rgba(45,212,191,.3); }
+
+    .skill-card-title {
+      font-size: .7rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: .9rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .skill-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+    }
+
+    .pill {
+      font-size: .78rem;
+      padding: .3rem .7rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,.05);
+      color: var(--light);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .proj-card {
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 12px;
+      padding: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+      transition: border-color .2s, transform .2s;
+    }
+    .proj-card:hover { border-color: rgba(45,212,191,.3); transform: translateY(-2px); }
+
+    .proj-icon {
+      font-size: 1.5rem;
+    }
+
+    .proj-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .proj-desc {
+      font-size: .84rem;
+      color: var(--slate);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    /* ── CERTS ── */
+    .cert-list {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+
+    .cert-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 10px;
+      padding: 1rem 1.4rem;
+    }
+
+    .cert-icon {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      background: rgba(245,158,11,.12);
+      border: 1px solid rgba(245,158,11,.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .cert-name {
+      font-size: .9rem;
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    .cert-date {
+      font-size: .75rem;
+      color: var(--slate);
+      margin-top: .15rem;
+    }
+
+    .cert-date { margin-left: auto; font-family: 'JetBrains Mono', monospace; color: var(--teal); font-size: .72rem; }
+
+    /* ── ACTIVITIES ── */
+    .activity-list {
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+    }
+
+    .activity-item {
+      display: flex;
+      align-items: flex-start;
+      gap: .9rem;
+      font-size: .87rem;
+      color: var(--slate);
+      line-height: 1.55;
+    }
+
+    .activity-item::before {
+      content: '▸';
+      color: var(--teal);
+      flex-shrink: 0;
+      margin-top: .05rem;
+    }
+
+    .highlight { color: var(--white); font-weight: 500; }
+
+    /* ── RESEARCH ── */
+    .interests-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+    }
+
+    .interest-tag {
+      padding: .5rem 1.1rem;
+      border-radius: 999px;
+      background: rgba(45,212,191,.07);
+      border: 1px solid rgba(45,212,191,.22);
+      color: var(--teal);
+      font-size: .84rem;
+    }
+
+    .pub-card {
+      background: var(--panel);
+      border-left: 3px solid var(--teal);
+      border-radius: 0 10px 10px 0;
+      padding: 1.4rem 1.6rem;
+      font-size: .88rem;
+      line-height: 1.65;
+      color: var(--slate);
+      margin-top: 1.5rem;
+    }
+
+    .pub-card .pub-title { color: var(--white); font-weight: 600; margin-bottom: .4rem; }
+    .pub-card .pub-venue { color: var(--teal); font-size: .8rem; margin-top: .5rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2.5rem 3.5rem;
+      text-align: center;
+      font-size: .8rem;
+      color: var(--slate);
+    }
+
+    /* ── EDITABLE HINT ── */
+    [contenteditable="true"] {
+      outline: none;
+      cursor: text;
+      transition: background .15s;
+    }
+    [contenteditable="true"]:hover {
+      background: rgba(45,212,191,.04);
+      border-radius: 4px;
+    }
+    [contenteditable="true"]:focus {
+      background: rgba(45,212,191,.08);
+      border-radius: 4px;
+      box-shadow: 0 0 0 1px rgba(45,212,191,.3);
+    }
+
+    .edit-banner {
+      position: fixed;
+      bottom: 1.25rem;
+      right: 1.25rem;
+      background: var(--teal);
+      color: var(--dark);
+      font-size: .75rem;
+      font-weight: 600;
+      padding: .55rem 1.1rem;
+      border-radius: 999px;
+      z-index: 200;
+      letter-spacing: .04em;
+      box-shadow: 0 4px 20px rgba(45,212,191,.35);
+      cursor: default;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 780px) {
+      #sidebar {
+        width: 100%;
+        min-height: auto;
+        position: relative;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 1.2rem 1.5rem;
+        gap: 1rem;
+        align-items: center;
+      }
+      main { margin-left: 0; }
+      nav { display: flex; flex-wrap: wrap; gap: .25rem; }
+      nav a { padding: .3rem .6rem; border-left: none; border-bottom: 2px solid transparent; }
+      nav a:hover, nav a.active { border-bottom-color: var(--teal); border-left-color: transparent; }
+      .about-grid { grid-template-columns: 1fr; }
+      .tl-item { grid-template-columns: 80px 1px 1fr; }
+      section { padding: 2.5rem 1.5rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── SIDEBAR ── -->
+<aside id="sidebar">
+  <div class="site-name" contenteditable="true">Md. Ashiqur Rahman Hridoy</div>
+  <div class="site-sub" contenteditable="true">Mechatronics &amp; Industrial Eng.</div>
+  <nav>
+    <a href="#home" class="active">Home</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
+    <a href="#research">Research</a>
+    <a href="#projects">Projects</a>
+    <a href="#certification">Certification</a>
+    <a href="#activities">Extra-Curricular</a>
+  </nav>
+  <div class="sidebar-socials">
+    <!-- LinkedIn -->
+    <a href="https://www.linkedin.com/in/ashiq-cuet" target="_blank" title="LinkedIn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452H17.21v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.985V9.147h3.1v1.561h.046a3.4 3.4 0 0 1 3.059-1.682c3.274 0 3.878 2.155 3.878 4.958v6.468zM5.337 7.433a1.83 1.83 0 1 1 0-3.659 1.83 1.83 0 0 1 0 3.659zm1.616 13.019H3.72V9.147h3.233v11.305zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.228.792 24 1.771 24h20.451C23.2 24 24 23.228 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    </a>
+    <!-- ORCID -->
+    <a href="#" title="ORCID">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12" fill="#A6CE39"/><path d="M7.2 7h1.6v10H7.2V7zm4.1 0h3.6c3.4 0 5 2.3 5 5s-1.6 5-5 5h-3.6V7zm1.6 8.5h1.9c2.3 0 3.5-1.4 3.5-3.5s-1.2-3.5-3.5-3.5h-1.9v7zm-4.5-9.8a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" fill="#fff"/></svg>
+    </a>
+    <!-- Google Sites -->
+    <a href="https://sites.google.com/view/ashiq-cuet/" target="_blank" title="Portfolio Site">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-8v4h4l-5 8z"/></svg>
+    </a>
+    <!-- Email -->
+    <a href="mailto:ashiq.cuet19@gmail.com" title="Email">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+    </a>
+  </div>
+</aside>
+
+<!-- ── MAIN ── -->
+<main>
+
+  <!-- HERO -->
+  <section id="home" style="padding:0; border:none;">
+    <div id="hero">
+      <div class="hero-bg-grid"></div>
+      <div class="hero-glow"></div>
+      <div class="hero-content">
+        <div class="hero-eyebrow" contenteditable="true">// Mechatronics · Automation · Research</div>
+        <h1 class="hero-name" contenteditable="true">Md. Ashiqur Rahman <em>Hridoy</em></h1>
+        <p class="hero-tagline" contenteditable="true">BSc in Mechatronics &amp; Industrial Engineering from CUET (CGPA 3.84/4.00). Passionate about industrial automation, machine learning, and sustainable manufacturing systems.</p>
+        <div class="hero-badges">
+          <span class="badge" contenteditable="true">CUET Dean's List 2023–25</span>
+          <span class="badge" contenteditable="true">CSWA Certified</span>
+          <span class="badge" contenteditable="true">Industrial Automation</span>
+          <span class="badge" contenteditable="true">Python · MATLAB · TIA Portal</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">About</div>
+    <div class="about-grid">
+      <div class="avatar-wrap">🎓</div>
+      <div class="about-text">
+        <p contenteditable="true">I am a recent graduate in Mechatronics and Industrial Engineering from Chittagong University of Engineering and Technology (CUET), Bangladesh, currently serving as an Adjunct Lecturer at Uttara University, Dhaka. I ranked 4th in my batch with a CGPA of 3.84/4.00 and have been awarded the Dean's List Award in 2023, 2024, and 2025.</p>
+        <p contenteditable="true">My research interests span industrial automation, digital twins, machine learning, and logistics optimization. I am eager to contribute to research-driven roles in academia or industry.</p>
+        <div class="contact-chips">
+          <div class="chip">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span contenteditable="true">+8801511001009</span>
+          </div>
+          <div class="chip">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <span contenteditable="true">ashiq.cuet19@gmail.com</span>
+          </div>
+          <div class="chip">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span contenteditable="true">Dhaka, Bangladesh</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-label">Experience</div>
+    <h2>Professional Experience</h2>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-date" contenteditable="true">Jan 2026 — May 2026</div>
+        <div class="tl-line"></div>
+        <div class="tl-body">
+          <div class="tl-title" contenteditable="true">Adjunct Lecturer — Dept. of Electrical &amp; Electronic Engineering</div>
+          <div class="tl-org" contenteditable="true">Uttara University, Dhaka</div>
+          <div class="tl-desc" contenteditable="true">
+            <ul>
+              <li>Taught theory &amp; sessional courses: Signal and System, Mechatronics and Automatic Control Engineering.</li>
+              <li>Prepared and evaluated question papers, graded assignments and exams.</li>
+              <li>Coordinated with faculty for course planning and student assessments.</li>
+            </ul>
+          </div>
+          <div class="tag-row">
+            <span class="tag">Teaching</span><span class="tag">Control Systems</span><span class="tag">Signal &amp; System</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date" contenteditable="true">Sep 2025 — Dec 2025</div>
+        <div class="tl-line"></div>
+        <div class="tl-body">
+          <div class="tl-title" contenteditable="true">Adjunct Lecturer — Dept. of Textile Engineering</div>
+          <div class="tl-org" contenteditable="true">Uttara University, Dhaka</div>
+          <div class="tl-desc" contenteditable="true">
+            <ul>
+              <li>Taught Elements of Mechanical Engineering &amp; Machine Design, Industrial &amp; Operations Management.</li>
+              <li>Conducted Workshop Practice lab sessions for undergraduate students.</li>
+            </ul>
+          </div>
+          <div class="tag-row">
+            <span class="tag">Mechanical Engineering</span><span class="tag">Operations Management</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date" contenteditable="true">Jan 2025</div>
+        <div class="tl-line"></div>
+        <div class="tl-body">
+          <div class="tl-title" contenteditable="true">Industrial Training</div>
+          <div class="tl-org" contenteditable="true">Walton Hi-Tech Industries PLC</div>
+          <div class="tl-desc" contenteditable="true">
+            <ul>
+              <li>14-day industrial attachment covering injection molding, thermoforming, and PCB/cable production.</li>
+              <li>Observed assembly line automation, quality control testing, and industrial workflows for refrigerators and ACs.</li>
+            </ul>
+          </div>
+          <div class="tag-row">
+            <span class="tag">Manufacturing</span><span class="tag">Automation</span><span class="tag">Quality Control</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-label">Education</div>
+    <h2>Academic Background</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date" contenteditable="true">Feb 2020 — Jul 2025</div>
+        <div class="tl-line"></div>
+        <div class="tl-body">
+          <div class="tl-title" contenteditable="true">BSc in Mechatronics and Industrial Engineering</div>
+          <div class="tl-org" contenteditable="true">Chittagong University of Engineering and Technology (CUET), Chattogram</div>
+          <div class="tl-desc" contenteditable="true">
+            <ul>
+              <li><strong>CGPA:</strong> 3.84 / 4.00 &nbsp;·&nbsp; <strong>Merit Position:</strong> 4th in batch</li>
+              <li>Dean's List Award: 2023, 2024, 2025 (CGPA ≥ 3.75)</li>
+              <li>Technical Scholarship awarded every semester for academic excellence</li>
+              <li>Coursework: Industrial Automation, Robotics, Control System, Sensor &amp; Instrumentation, CIM, Machine Learning, Operations Research</li>
+            </ul>
+          </div>
+          <div class="tag-row">
+            <span class="tag">CGPA 3.84/4.00</span><span class="tag">Dean's List</span><span class="tag">Merit Rank 4</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-label">Skills</div>
+    <h2>Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-title">Programming</div>
+        <div class="skill-pills">
+          <span class="pill">Python</span><span class="pill">C</span><span class="pill">MATLAB</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Libraries &amp; Frameworks</div>
+        <div class="skill-pills">
+          <span class="pill">NumPy</span><span class="pill">Pandas</span><span class="pill">Matplotlib</span><span class="pill">OpenCV</span><span class="pill">Scikit-Learn</span><span class="pill">TensorFlow</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Design &amp; Simulation</div>
+        <div class="skill-pills">
+          <span class="pill">SolidWorks</span><span class="pill">Proteus</span><span class="pill">Factory I/O</span><span class="pill">TIA Portal</span><span class="pill">FluidSIM</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Tools &amp; Platforms</div>
+        <div class="skill-pills">
+          <span class="pill">Microsoft Office</span><span class="pill">LaTeX</span><span class="pill">Arduino</span><span class="pill">PLC</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section id="research">
+    <div class="section-label">Research</div>
+    <h2>Research Interests &amp; Publications</h2>
+    <div class="interests-flow">
+      <span class="interest-tag" contenteditable="true">Industrial Automation</span>
+      <span class="interest-tag" contenteditable="true">Digital Twin</span>
+      <span class="interest-tag" contenteditable="true">System Modeling &amp; Simulation</span>
+      <span class="interest-tag" contenteditable="true">Machine Learning</span>
+      <span class="interest-tag" contenteditable="true">Logistics &amp; Supply Chain Optimization</span>
+      <span class="interest-tag" contenteditable="true">Sustainable &amp; Green Manufacturing</span>
+      <span class="interest-tag" contenteditable="true">Ergonomics &amp; Human Factor Engineering</span>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-title" contenteditable="true">Undergraduate Thesis</div>
+      <p contenteditable="true">Optimizing Multi-Depot Vehicle Routing: An ABC-GA Hybrid Algorithm and Comparative Analysis. Designed and implemented a hybrid algorithm in Python focusing on efficient customer allocation and route planning across multiple depots. Achieved approximately 2% better performance compared to existing hybrid algorithms.</p>
+      <div class="pub-venue" contenteditable="true">📄 Hridoy, M.A.R., Lubaba, R.F.K., Roy, S., Dhar, D. — Proceedings of the 8th ICMERE 2025, Chattogram (Under Review)</div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">Projects</div>
+    <h2>Projects</h2>
+    <div class="projects-grid">
+
+      <div class="proj-card">
+        <div class="proj-icon">☕</div>
+        <div class="proj-title" contenteditable="true">Automatic Coffee Vending Machine</div>
+        <div class="proj-desc" contenteditable="true">PLC-based simulation of an automatic coffee vending machine, demonstrating ladder logic programming and HMI integration.</div>
+        <div class="tag-row"><span class="tag">PLC</span><span class="tag">HMI</span><span class="tag">TIA Portal</span></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">🚦</div>
+        <div class="proj-title" contenteditable="true">Traffic Light Simulation (PLC S7 1200)</div>
+        <div class="proj-desc" contenteditable="true">Traffic light control system simulated using Siemens PLC S7-1200 in TIA Portal with realistic timing logic.</div>
+        <div class="tag-row"><span class="tag">PLC S7-1200</span><span class="tag">TIA Portal</span></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">🤖</div>
+        <div class="proj-title" contenteditable="true">Line Following Robot</div>
+        <div class="proj-desc" contenteditable="true">Developed a car that follows a line using IR sensor and Arduino. Programmed Arduino integrating real-time sensor feedback with motor control.</div>
+        <div class="tag-row"><span class="tag">Arduino</span><span class="tag">IR Sensor</span><span class="tag">Motor Control</span></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">⚽</div>
+        <div class="proj-title" contenteditable="true">Soccer Bot</div>
+        <div class="proj-desc" contenteditable="true">Designed and developed a soccer-playing robot controlled via Bluetooth using an Arduino microcontroller.</div>
+        <div class="tag-row"><span class="tag">Arduino</span><span class="tag">Bluetooth</span><span class="tag">Robotics</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CERTIFICATION -->
+  <section id="certification">
+    <div class="section-label">Certification</div>
+    <h2>Professional Certifications &amp; Training</h2>
+    <div class="cert-list">
+
+      <div class="cert-item">
+        <div class="cert-icon">🏅</div>
+        <div>
+          <div class="cert-name" contenteditable="true">Certified SolidWorks Associate (CSWA)</div>
+          <div class="cert-date" style="color:var(--slate); font-size:.75rem; margin-top:.15rem">SolidWorks</div>
+        </div>
+        <div class="cert-date">Sep 2024</div>
+      </div>
+
+      <div class="cert-item">
+        <div class="cert-icon">🏅</div>
+        <div>
+          <div class="cert-name" contenteditable="true">Certified SolidWorks Additive Manufacturing Associate</div>
+          <div class="cert-date" style="color:var(--slate); font-size:.75rem; margin-top:.15rem">SolidWorks</div>
+        </div>
+        <div class="cert-date">Oct 2024</div>
+      </div>
+
+      <div class="cert-item">
+        <div class="cert-icon">🏅</div>
+        <div>
+          <div class="cert-name" contenteditable="true">Certified SolidWorks Electrical Design Associate</div>
+          <div class="cert-date" style="color:var(--slate); font-size:.75rem; margin-top:.15rem">SolidWorks</div>
+        </div>
+        <div class="cert-date">Oct 2024</div>
+      </div>
+
+      <div class="cert-item">
+        <div class="cert-icon">📋</div>
+        <div>
+          <div class="cert-name" contenteditable="true">Road map to ISO 14001:2015 and ISO 45001:2018</div>
+          <div class="cert-date" style="color:var(--slate); font-size:.75rem; margin-top:.15rem">External</div>
+        </div>
+        <div class="cert-date">Dec 2023</div>
+      </div>
+
+      <div class="cert-item">
+        <div class="cert-icon">🏭</div>
+        <div>
+          <div class="cert-name" contenteditable="true">Industrial Automation (60-hour hands-on) — IICT, CUET &amp; BCC, ICT Division</div>
+          <div class="cert-date" style="color:var(--slate); font-size:.75rem; margin-top:.15rem">FluidSIM · TIA Portal · PLC · HMI</div>
+        </div>
+        <div class="cert-date">Oct 2024 – Jan 2025</div>
+      </div>
+
+      <div class="cert-item">
+        <div class="cert-icon">🛡️</div>
+        <div>
+          <div class="cert-name" contenteditable="true">Basic Safety Training — Samsung C&amp;T Corporation</div>
+          <div class="cert-date" style="color:var(--slate); font-size:.75rem; margin-top:.15rem">First Aid · Fire Safety · PST · PSSR</div>
+        </div>
+        <div class="cert-date">Jul 2023</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ACTIVITIES -->
+  <section id="activities">
+    <div class="section-label">Extra-Curricular</div>
+    <h2>Competitions &amp; Activities</h2>
+    <div class="activity-list">
+      <div class="activity-item" contenteditable="true"><span><span class="highlight">Champion</span> — Techday 2022, Inter-University LFR Competition organized by RMA</span></div>
+      <div class="activity-item" contenteditable="true"><span><span class="highlight">Second Runner-Up</span> — Industrial Techathon 2025, National Competition organized by MIE Dept., CUET</span></div>
+      <div class="activity-item" contenteditable="true"><span><span class="highlight">Qualified</span> for pre-final round — International Astronomy and Astrophysics Competition (IAAC) 2025</span></div>
+      <div class="activity-item" contenteditable="true"><span><span class="highlight">Competition Lead</span> — MIE Robolution 1.0 National Event</span></div>
+      <div class="activity-item" contenteditable="true"><span><span class="highlight">Project Secretary</span> — Robo-mechatronics Association (RMA), CUET</span></div>
+      <div class="activity-item" contenteditable="true"><span><span class="highlight">Member</span> — Industrial Engineering and Operations Management, CUET Chapter</span></div>
+      <div class="activity-item" contenteditable="true"><span>Participant: Hult Prize at CUET, RMA INSIGHT Technical Case Solving 2020, RMA Techday 2021 &amp; 2022, Chittagong Science Carnival 2.0, BEC ROBO MANIA 2022 at BUBT</span></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p contenteditable="true">© 2026 Md. Ashiqur Rahman Hridoy · Dhaka, Bangladesh · <a href="mailto:ashiq.cuet19@gmail.com" style="color:var(--teal)">ashiq.cuet19@gmail.com</a></p>
+    <p style="margin-top:.4rem; font-size:.72rem;" contenteditable="true">References: Prof. Homayun Kabir (homayun@cuet.ac.bd) · Asst. Prof. Sanjeeb Roy (sanjeeb@cuet.ac.bd)</p>
+  </footer>
+
+</main>
+
+<div class="edit-banner">✏️ Click any text to edit</div>
+
+<script>
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id], div[id="hero"]');
+  const navLinks = document.querySelectorAll('nav a');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const active = document.querySelector(`nav a[href="#${e.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.35 });
+
+  document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
